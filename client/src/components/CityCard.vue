@@ -1,34 +1,45 @@
 <template>
     <div class="card">
-        <b-card>
-            <b-container>
-                <b-card-header>
-                    <h1 style="color: white">{{data.name}}</h1>
-                    <img v-bind:src="'http://openweathermap.org/img/wn/'+data.weather[0].icon+'@2x.png'" alt="New york">
-                </b-card-header>
-                <b-row>
-                    <b-col c @click="changeTempSelector">
-                        <font-awesome-icon :icon="['fa','thermometer-half']"
-                                           size="3x"></font-awesome-icon>
-                        <div>
-                            <span>{{data.main.temp_max | celsiusOrFahrenheit(isCelsius)}}</span>
-                            <h2>{{data.main.temp | celsiusOrFahrenheit(isCelsius)}}</h2>
-                            <span>{{data.main.temp_min | celsiusOrFahrenheit(isCelsius)}}</span>
-                        </div>
+        <b-card >
+
+            <b-card-header>
+                <h1 style="color: white">{{data.name}}</h1>
+                <img v-bind:src="'http://openweathermap.org/img/wn/'+data.weather[0].icon+'@2x.png'" alt="New york">
+            </b-card-header>
+            <b-card-body>
+                <b-row >
+                    <b-col @click="changeTempSelector">
+                        <b-container>
+                            <font-awesome-icon :icon="['fa','thermometer-half']"
+                                               size="3x"></font-awesome-icon>
+                            <div>
+                                <span>{{data.main.temp_max | celsiusOrFahrenheit(isCelsius)}}</span>
+                                <h2>{{data.main.temp | celsiusOrFahrenheit(isCelsius)}}</h2>
+                                <span>{{data.main.temp_min | celsiusOrFahrenheit(isCelsius)}}</span>
+                            </div>
+
+                        </b-container>
 
                     </b-col>
                     <b-col>
-                        <font-awesome-icon :icon="['fa','tint']" size="3x"></font-awesome-icon>
-                        <h2>{{data.main.humidity}} %</h2>
+                        <b-container>
+                            <font-awesome-icon :icon="['fa','tint']" size="3x"></font-awesome-icon>
+                            <h2>{{data.main.humidity}} %</h2>
+                        </b-container>
                     </b-col>
                     <b-col>
-                        <font-awesome-icon :icon="['fa','wind']" size="3x"></font-awesome-icon>
-                        <h2>{{data.wind.speed}} m/s</h2>
-                        <font-awesome-icon :icon="['fas','long-arrow-alt-down']" size="2x"
-                                           v-bind:style="{transform:'rotate('+data.wind.deg+'deg)'}"></font-awesome-icon>
+                        <b-container>
+                            <font-awesome-icon :icon="['fa','wind']" size="3x"></font-awesome-icon>
+                            <h2>{{data.wind.speed}} m/s</h2>
+                            <font-awesome-icon :icon="['fas','long-arrow-alt-down']" size="2x"
+                                               v-bind:style="{transform:'rotate('+data.wind.deg+'deg)'}"></font-awesome-icon>
+                        </b-container>
+
                     </b-col>
                 </b-row>
-            </b-container>
+
+            </b-card-body>
+
         </b-card>
     </div>
 </template>
@@ -59,8 +70,8 @@
     .card {
         width: 40em;
         margin: 4px;
-        display: inline-block;
         vertical-align: top;
+        display: flex;
     }
 
 </style>
