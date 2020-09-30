@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+      <CustomNavBar></CustomNavBar>
     </div>
     <router-view/>
   </div>
@@ -30,3 +31,10 @@
   }
 }
 </style>
+<script>
+import CustomNavBar from './components/CustomNavBar.vue';
+
+export default {
+  components: { CustomNavBar },
+};
+</script>
