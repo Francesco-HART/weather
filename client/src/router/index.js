@@ -6,7 +6,6 @@ import About from "../views/About";
 
 
 
-
 Vue.use(Router);
 
 export default new Router({
@@ -16,3 +15,4 @@ export default new Router({
         {path: "/About",name: "About", component: About},
     ]
 })
+
