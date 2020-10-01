@@ -6,7 +6,7 @@
       <b-tab v-for="(tabline, index) in data.list" :key="index" title="météo sur 5 jour toutes les 3h"
        active>
         <template v-if="index > 0" slot="title">
-          {{tabline.dt_txt | moment("LLLL")}}
+          {{tabline.dt | moment("LLLL")}}
         </template>
         <div v-if="index > 0">
           <p>
