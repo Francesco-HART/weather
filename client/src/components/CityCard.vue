@@ -6,12 +6,12 @@
         <b-row class="m-1">
             <b-col>
                 <b-row>
-                    <router-link class="m-2 h-4" :to="/Advanced/+data.name">
-                        <b-col><h1 style="color: white">{{data.name}}</h1></b-col>
+                    <router-link class="m-2 h-4" :to="/Advanced/+datas.name">
+                        <b-col><h1 style="color: white">{{datas.name}}</h1></b-col>
                     </router-link>
                     <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'"><h2>
-                        {{data.main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
-                    <b-col><p>{{ time | moment("LLLL")}}</p></b-col>
+                        {{datas.main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
+                    <b-col ><b-button @click="refresh">{{ time | moment("LLLL")}}</b-button></b-col>
                 </b-row>
             </b-col>
         </b-row>
@@ -24,26 +24,28 @@
                 <font-awesome-icon :icon="['fa','thermometer-half']"
                                    size="3x"></font-awesome-icon>
                 <div>
-                    <span>{{data.main.temp_max | celsiusOrFahrenheit(isCelsius)}}</span>
-                    <h4>{{data.main.temp | celsiusOrFahrenheit(isCelsius)}}</h4>
-                    <span>{{data.main.temp_min | celsiusOrFahrenheit(isCelsius)}}</span>
+                    <span>{{datas.main.temp_max | celsiusOrFahrenheit(isCelsius)}}</span>
+                    <h4>{{datas.main.temp | celsiusOrFahrenheit(isCelsius)}}</h4>
+                    <span>{{datas.main.temp_min | celsiusOrFahrenheit(isCelsius)}}</span>
                 </div>
             </b-col>
             <b-col>
                 <font-awesome-icon :icon="['fa','tint']" size="2x"/>
-                <h4>{{data.main.humidity}} %</h4>
+                <h4>{{datas.main.humidity}} %</h4>
             </b-col>
             <b-col>
                 <font-awesome-icon :icon="['fa','wind']" size="2x"/>
-                <h4>{{data.wind.speed}} m/s</h4>
+                <h4>{{datas.wind.speed}} m/s</h4>
                 <font-awesome-icon :icon="['fas','long-arrow-alt-down']" size="1x"
-                                   v-bind:style="{transform:'rotate('+data.wind.deg+'deg)'}"/>
+                                   v-bind:style="{transform:'rotate('+datas.wind.deg+'deg)'}"/>
             </b-col>
         </b-row>
     </b-card>
 </template>
 
 <script>
+
+    import Axios from "axios";
 
     export default {
         name: "CityCard",
@@ -52,12 +54,21 @@
             return {
                 isCelsius: true,
                 time: "",
+                datas: this.data
             }
         },
         methods: {
             changeTempSelector: function() {
                 this.isCelsius = !this.isCelsius;
-            }/*,
+            }, refresh: function() {
+                console.log("refresh");
+                Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + this.datas.name + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
+                    .then(response => {
+                        this.datas = response.data;
+                        this.time = Date.now();
+                    })
+            }
+        }/*,
             defineBackground: function(weatherId) {
                 if (weatherId < 300) {
                     return "thunderstorm.jpeg";
@@ -77,11 +88,15 @@
                     return "sunny.jpg"
                 }
             }*/
-        }, filters: {
+
+        ,
+        filters: {
             celsiusOrFahrenheit: function(value, isCelsius) {
                 return isCelsius ? value.toFixed(1) + "°C" : "" + (value * 1.8000 + 32.00).toFixed(1) + "°F";
             }
-        }, mounted() {
+        }
+        ,
+        mounted() {
             this.time = Date.now();
         }
     }

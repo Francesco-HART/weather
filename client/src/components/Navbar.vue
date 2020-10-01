@@ -3,8 +3,8 @@
         <div>
             <b-navbar  class="d-flex justify-content-between" type="light" variant="dark">
                 <div class="m-2">
-                    <router-link class="m-2 h-4" to="/"><span>Home</span></router-link>
-                    <router-link class="m-2 h-4" to="/About"><span>About</span></router-link>
+                    <router-link class="m-2 h-4" to="/"><b-button>Home</b-button></router-link>
+                    <router-link class="m-2 h-4" to="/About"><b-button>About</b-button></router-link>
                 </div>
                 <div>
                     <b-nav-form >
@@ -37,8 +37,10 @@
             searchCity: function(newCity) {
                 Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + newCity + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
                     .then(response => {
-                        this.$store.commit('addNewCity', response.data);
-                        this.$store.commit('addCityName', newCity);
+                        if (!this.$store.getters.citiesName.includes(newCity.toLowerCase())) {
+                            this.$store.commit('addNewCity', response.data);
+                            this.$store.commit('addCityName', newCity.toLowerCase());
+                        }
                     })
                 this.newCity = "";
             }
