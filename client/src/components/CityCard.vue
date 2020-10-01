@@ -6,7 +6,7 @@
         <b-row class="m-1">
             <b-col>
                 <b-row>
-                    <router-link class="m-2 h-4" :to="/Advanced/+datas.city.name">
+                    <router-link class="m-2 h-4" :to="/Advanced/+datas.city.name" >
                         <b-col><h1 style="color: white">{{datas.city.name}}</h1></b-col>
                     </router-link>
                     <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'"><h2>
