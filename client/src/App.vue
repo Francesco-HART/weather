@@ -15,6 +15,9 @@
 </script>
 
 <style lang="scss">
+  html {
+    font-size: 1rem;
+  }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
