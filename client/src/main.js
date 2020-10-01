@@ -9,12 +9,16 @@ import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VueMoment from 'vue-moment'
+import AsyncComputed from 'vue-async-computed'
 const moment = require('moment')
 require('moment/locale/fr')
+
+
+
 library.add(faWind, faTint, faThermometerHalf, faLongArrowAltDown)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
-
+Vue.use(AsyncComputed)
 
 Vue.use(VueMoment, {
     moment,

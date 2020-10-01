@@ -18,8 +18,8 @@ export const store = new Vuex.Store({
     },
     addCityName(state, name) {
       console.log(state.citiesName)
-      if(!state.citiesName.includes(name))
-      state.citiesName.push(name)
+      if(!state.citiesName.includes(name.toLowerCase()))
+      state.citiesName.push(name.toLowerCase())
     }
   },
   actions: {

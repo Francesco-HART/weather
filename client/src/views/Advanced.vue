@@ -7,7 +7,8 @@
             <b-col>
                 <b-row>
                     <b-col><h1 style="color: white">{{data.name}}</h1></b-col>
-                    <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'" ><h2>{{data.main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
+                    <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'"><h2>
+                        {{data.main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
                     <b-col><p>{{ time | moment("LLLL")}}</p></b-col>
                 </b-row>
             </b-col>
@@ -49,8 +50,8 @@
         data() {
             return {
                 isCelsius: true,
-                time:"",
-                data:{}
+                time: "",
+                data: {}
             }
         },
         methods: {
@@ -61,11 +62,17 @@
             celsiusOrFahrenheit: function(value, isCelsius) {
                 return isCelsius ? value.toFixed(1) + "°C" : "" + (value * 1.8000 + 32.00).toFixed(1) + "°F";
             }
-        },mounted() {
-                Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + this.$route.params.cityName + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
-                    .then(response => this.data=response.data)
+        }, mounted() {
+            Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + this.$route.params.cityName + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
+                .then((response) => {
+                    this.data = response.data;
+                    if (!this.$store.getters.citiesName.includes(this.$route.params.cityName.toLowerCase())) {
+                        this.$store.commit('addNewCity', response.data);
+                        this.$store.commit('addCityName', this.$route.params.cityName);
+                    }
+                })
 
-            this.time=Date.now();
+            this.time = Date.now();
         }
     }
 </script>
