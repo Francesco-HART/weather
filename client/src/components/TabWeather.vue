@@ -1,9 +1,8 @@
 <template>
 <div>
-  <h1>{{data.city.name}}</h1>
+  <h1>{{datas.city.name}}</h1>
   <div>
-    <b-tabs content-class="mt-3">
-      <b-tab v-for="(tabline, index) in data.list" :key="index" title="météo sur 5 jour toutes les 3h"
+      <b-table v-for="(tabline, index) in datas.list" :key="index" title="météo sur 5 jour toutes les 3h"
        active>
         <template v-if="index > 0" slot="title">
           {{tabline.dt | moment("LLLL")}}
@@ -28,15 +27,14 @@
             Vent :{{tabline.wind.speed}} m/s
           </p>
         </div>
-      </b-tab>
-    </b-tabs>
+      </b-table>
   </div>
 </div>
 </template>
 
 <script>
 export default {
-name: "TabWather",
+name: "TabWeather",
   props : {
     data: Array,
   },
