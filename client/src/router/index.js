@@ -12,7 +12,7 @@ Vue.use(Router);
 export default new Router({
     routes: [
         {path: "/", name: "Home", component: Home},
-        {path: "/Advanced", name: "Advanced/:cityName",component: Advanced},
+        {path: "/Advanced/:cityName", name: "Advanced",component: Advanced},
         {path: "/About",name: "About", component: About},
     ]
 })

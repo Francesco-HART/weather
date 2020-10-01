@@ -5,11 +5,14 @@
     >
         <b-row class="m-1">
             <b-col>
-                    <b-row>
+                <b-row>
+                    <router-link class="m-2 h-4" :to="/Advanced/+data.name">
                         <b-col><h1 style="color: white">{{data.name}}</h1></b-col>
-                        <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'" ><h2>{{data.main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
-                        <b-col><p>{{ time | moment("LLLL")}}</p></b-col>
-                    </b-row>
+                    </router-link>
+                    <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'"><h2>
+                        {{data.main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
+                    <b-col><p>{{ time | moment("LLLL")}}</p></b-col>
+                </b-row>
             </b-col>
         </b-row>
         <b-row>
@@ -48,7 +51,7 @@
         data() {
             return {
                 isCelsius: true,
-                time:"",
+                time: "",
             }
         },
         methods: {
@@ -78,8 +81,8 @@
             celsiusOrFahrenheit: function(value, isCelsius) {
                 return isCelsius ? value.toFixed(1) + "°C" : "" + (value * 1.8000 + 32.00).toFixed(1) + "°F";
             }
-        },mounted() {
-            this.time=Date.now();
+        }, mounted() {
+            this.time = Date.now();
         }
     }
 </script>
