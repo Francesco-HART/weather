@@ -1,15 +1,19 @@
 <template>
   <div id="app">
+    <Navbar />
     <CardsList/>
   </div>
 </template>
 
 <script>
   import CardsList from "./components/CardsList";
+  import Navbar from "./components/Navbar"
+
   export default {
     name: 'App',
     components: {
       CardsList,
+      Navbar,
     }
   }
 </script>
