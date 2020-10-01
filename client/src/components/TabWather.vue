@@ -45,7 +45,8 @@ name: "TabWather",
           temperature_min : this.data.list[i].main.temp_min,
           temperature : this.data.list[i].main.temp,
           humidity : this.data.list[i].main.humidity,
-          vent : this.data.list[i].wind.speed});
+          vent : this.data.list[i].wind.speed,
+          temps: this.data.list[i].weather[0].description});
     }
   }
 }
