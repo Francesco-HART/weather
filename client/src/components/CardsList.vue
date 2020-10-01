@@ -1,7 +1,7 @@
 <template>
-    <b-container>
-        <div class="md-layout-item" v-for="(data,index) in datas" v-bind:key="index">
-            <CityCard v-bind:data="data.data"></CityCard>
+    <b-container class="d-flex flex-wrap align-content-stretch ">
+        <div v-for="(data,index) in  this.$store.getters.citiesData" v-bind:key="index">
+                <CityCard  v-bind:data="data"></CityCard>
         </div>
     </b-container>
 
@@ -9,27 +9,24 @@
 
 <script>
     import CityCard from "./CityCard";
-    import axios from 'axios';
+
+    import Axios from "axios";
 
     export default {
         name: "CardsList",
         components: {CityCard},
         data() {
             return {
-                datas: [],
-                cityName: '',
-                cities: ['paris', 'cergy']
+
             }
         }, methods: {
             callCity: function(cityName) {
-                axios
-                    .get("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
-                    .then(response => (this.datas.push(response)))
-
+                Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
+                    .then(response => {this.$store.commit('addNewCity', response.data);})
             }
 
         }, mounted() {
-            this.cities.forEach(cityName => {
+            this.$store.getters.citiesName.forEach(cityName => {
                 this.callCity(cityName)
             })
         }, asyncComputed: {}
