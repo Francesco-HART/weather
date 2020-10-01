@@ -11,9 +11,13 @@
     import CityCard from "./CityCard";
 
 
+
     export default {
         name: "CardsList",
-        components: {CityCard},
+        components: {
+            CityCard
+        }
+,
         data() {
             return {
 

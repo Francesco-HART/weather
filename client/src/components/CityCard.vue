@@ -6,7 +6,7 @@
         <b-row class="m-1">
             <b-col>
                 <b-row>
-                    <router-link class="m-2 h-4" :to="/Advanced/+datas.city.name">
+                    <router-link class="m-2 h-4" :to="/Advanced/+datas.city.name" >
                         <b-col><h1 style="color: white">{{datas.city.name}}</h1></b-col>
                     </router-link>
                     <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'"><h2>
@@ -110,7 +110,9 @@
         mounted() {
             Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + this.datas.city.name + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
                 .then(response => {
-                    this.datas.list.unshift(response.data)
+                    if(this.datas.list[0]!==response.data){
+                        this.datas.list.unshift(response.data)
+                    }
                 })
         }
     }
