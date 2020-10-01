@@ -110,7 +110,9 @@
         mounted() {
             Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + this.datas.city.name + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
                 .then(response => {
-                    this.datas.list.unshift(response.data)
+                    if(this.datas.list[0]!==response.data){
+                        this.datas.list.unshift(response.data)
+                    }
                 })
         }
     }
