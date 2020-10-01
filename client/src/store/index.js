@@ -14,10 +14,12 @@ export const store = new Vuex.Store({
   },
   mutations:{
     addNewCity(state, data) {
-      state.citiesData.push(data)
+        state.citiesData.push(data)
     },
     addCityName(state, name) {
-      state.cities.push(name)
+      console.log(state.citiesName)
+      if(!state.citiesName.includes(name))
+      state.citiesName.push(name)
     }
   },
   actions: {

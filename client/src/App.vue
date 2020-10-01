@@ -1,19 +1,28 @@
 <template>
   <div id="app">
     <Navbar />
-    <CardsList/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-  import CardsList from "./components/CardsList";
   import Navbar from "./components/Navbar"
+  import Axios from "axios";
 
   export default {
     name: 'App',
     components: {
-      CardsList,
       Navbar,
+    }, methods: {
+      callCity: function(cityName) {
+        Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
+                .then(response => {this.$store.commit('addNewCity', response.data);})
+      }
+
+    }, mounted() {
+      this.$store.getters.citiesName.forEach(cityName => {
+        this.callCity(cityName)
+      })
     }
   }
 </script>
