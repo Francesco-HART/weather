@@ -15,15 +15,17 @@
       Navbar,
     }, methods: {
       callCity: function(cityName) {
-        Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
-                .then(response => {this.$store.commit('addNewCity', response.data);})
+        Axios.get("http://api.openweathermap.org/data/2.5/forecast?q=" + cityName  + "&units=metric&appid=bad96578ef9dd9f3f119b3cb1238f1b2&lang=fr")
+                .then(response => {
+                  console.log(response.data);
+                  this.$store.commit('addNewCity', response.data);})
       }
 
     }, mounted() {
       this.$store.getters.citiesName.forEach(cityName => {
         this.callCity(cityName)
       })
-    }
+    },
   }
 </script>
 

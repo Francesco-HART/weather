@@ -35,7 +35,7 @@
         },
         methods: {
             searchCity: function(newCity) {
-                Axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + newCity + "&units=metric&appid=2a2b833d0dede9d3979171b2be94f7a4&lang=fr")
+                Axios.get("http://api.openweathermap.org/data/2.5/forecast?q=" + newCity  + "&units=metric&appid=bad96578ef9dd9f3f119b3cb1238f1b2&lang=fr")
                     .then(response => {
                         if (!this.$store.getters.citiesName.includes(newCity.toLowerCase())) {
                             this.$store.commit('addNewCity', response.data);
