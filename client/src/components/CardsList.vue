@@ -1,7 +1,7 @@
 <template>
-    <b-container class="d-flex flex-wrap align-content-stretch ">
-        <div v-for="(data,index) in  this.$store.getters.citiesData" v-bind:key="index">
-                <CityCard  v-bind:data="data"></CityCard>
+    <b-container class="d-flex flex-wrap align-content-stretch m-1 col-12">
+        <div v-for="(data,index) in  this.$store.getters.citiesData" v-bind:key="index" >
+                <CityCard class="col-4" v-bind:data="data"></CityCard>
         </div>
     </b-container>
 

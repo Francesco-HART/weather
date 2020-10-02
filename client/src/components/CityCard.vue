@@ -1,6 +1,6 @@
 <template>
     <b-card
-            style="color:white ;background-color: #2c3e50; max-width: 30rem; max-height: 30rem"
+            style="color:white ;background-color: #2c3e50; max-width: 31rem; height: 31rem"
             class="m-1"
     >
         <b-row class="m-1">
