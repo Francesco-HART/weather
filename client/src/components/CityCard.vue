@@ -1,17 +1,17 @@
 <template>
     <b-card
-            style="color:white ;background-color: #2c3e50; max-width: 31rem; height: 31rem"
+            style="color:white ;background-color: #2c3e50; max-width: 30rem; height: 31rem"
             class="m-1"
     >
         <b-row class="m-1">
             <b-col>
                 <b-row>
-                    <router-link class="m-2 h-4" :to="/Advanced/+datas.city.name" >
-                        <b-col><h1 style="color: white">{{datas.city.name}}</h1></b-col>
+                    <router-link class="m-2 " :to="/Advanced/+datas.city.name" >
+                        <b-col ><h3 style="color: white">{{datas.city.name}}</h3></b-col>
                     </router-link>
                     <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'"><h2>
                         {{datas.list[value].main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
-                    <b-col ><b-button @click="refresh">{{ datas.list[value].dt | moment("L hh:mm")}}</b-button></b-col>
+                    <b-col  ><b-button @click="refresh">{{ datas.list[value].dt | moment("L hh:mm")}}</b-button></b-col>
                 </b-row>
             </b-col>
         </b-row>
@@ -42,7 +42,7 @@
         </b-row>
       <div>
 
-        <b-form-input id="range-1" v-model="value" type="range" min="0" :max="datas.list.length-1"></b-form-input>
+        <b-form-input id="range-1" v-model="value" type="range" min="0" :max="datas.list.length-1" class="position-relative fixed-bottom"></b-form-input>
       </div>
 
     </b-card>
