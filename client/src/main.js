@@ -12,8 +12,10 @@ import VueMoment from 'vue-moment'
 import AsyncComputed from 'vue-async-computed'
 const moment = require('moment')
 require('moment/locale/fr')
-
-
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
+Vue.use(LMap);
+Vue.use(LMarker);
+Vue.use(LTileLayer)
 
 library.add(faWind, faTint, faThermometerHalf, faLongArrowAltDown)
 Vue.use(BootstrapVue)
