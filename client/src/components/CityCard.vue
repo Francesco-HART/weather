@@ -11,7 +11,7 @@
                     </router-link>
                     <b-col @click="changeTempSelector" v-b-popover.hover.top="'Température ressenti'"><h2>
                         {{datas.list[value].main.feels_like | celsiusOrFahrenheit(isCelsius)}}</h2></b-col>
-                    <b-col ><b-button @click="refresh">{{ datas.list[value].dt | moment("LLLL")}}</b-button></b-col>
+                    <b-col ><b-button @click="refresh">{{ datas.list[value].dt | moment("L hh:mm")}}</b-button></b-col>
                 </b-row>
             </b-col>
         </b-row>
