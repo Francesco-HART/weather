@@ -1,6 +1,6 @@
 <template>
     <b-card
-            style="color:white ;background-color: #2c3e50; max-width: 30rem; height: 31rem"
+            style="color:white ;background-color: #2c3e50; max-width: 30rem; height: 25rem"
             class="m-1"
     >
         <b-row class="m-1">
@@ -42,7 +42,7 @@
         </b-row>
       <div>
 
-        <b-form-input id="range-1" v-model="value" type="range" min="0" :max="datas.list.length-1" class="position-relative fixed-bottom"></b-form-input>
+        <b-form-input id="range-1" v-model="value"  type="range" min="0" :max="datas.list.length-1" style="position: absolute; bottom: 5%; left : 12%; width:70%"></b-form-input>
       </div>
 
     </b-card>
