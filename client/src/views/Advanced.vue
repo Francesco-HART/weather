@@ -2,10 +2,10 @@
     <div>
         <h1>{{this.$route.params.cityName}}</h1>
         <b-row>
-            <b-col class="col-4">
+            <b-col class="col-5">
                 <Map :positions="data.city.coord" :cityName="this.$route.params.cityName"></Map>
             </b-col>
-            <b-col class="col-8">
+            <b-col class="col-7">
                 <b-table striped hover :items="items"></b-table>
             </b-col>
         </b-row>

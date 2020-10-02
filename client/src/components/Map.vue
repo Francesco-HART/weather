@@ -1,5 +1,5 @@
 <template>
-    <div id="map" style="width:100%; height:100%"></div>
+    <div id="map" style="width:100%; height:60%"></div>
 </template>
 
 <script>
@@ -18,7 +18,7 @@
         },
         mounted() {
             const pos = [this.positions.lat, this.positions.lon];
-            const map = L.map("map").setView(pos, 10);
+            const map = L.map("map", {center:pos, zoom : 12, minZoom: 12})
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
